@@ -22,7 +22,7 @@ class Product(Base):
         id = int(obj.get("id") if obj.get("id") is not None else "0")
         name = str(obj.get("name"))
         description = str(obj.get("description"))
-        schedule = int(obj.get("schedule"))
+        schedule = int(obj.get("schedule")) if obj.get("schedule") is not None else None
         branch_office = int(obj.get("branchOffice") if obj.get("branchOffice") is not None else obj.get("branch_office"))
         return Product(name, description, schedule, branch_office, id)
 
@@ -31,6 +31,6 @@ class Product(Base):
         result["id"] = int(self.id)
         result["name"] = str(self.name)
         result["description"] = str(self.description)
-        result["schedule"] = int(self.schedule)
+        result["schedule"] = int(self.schedule) if self.schedule is not None else None
         result["branchOffice"] = int(self.branch_office)
         return result
